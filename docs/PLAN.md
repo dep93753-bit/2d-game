@@ -2,8 +2,8 @@
 
 Each stage ends with something you can open and try, plus a commit.
 
-1. **Skeleton.** `index.html`, CSS, adaptive layout, crisp pixel canvas, game loop, Harbor background and dock from the pack. Works on GitHub Pages.
-2. **Core loop (Harbor).** A ship sails in, the crane unloads containers into storage, a truck hauls them away, and money goes up. No upgrades yet.
+1. ✅ **Skeleton.** `index.html`, CSS, adaptive layout, crisp pixel canvas, game loop, Harbor background and dock from the pack. Works on GitHub Pages.
+2. ✅ **Core loop (Harbor).** A ship sails in, the crane unloads containers into storage, a truck hauls them away, and money goes up. No upgrades yet.
 3. **Upgrades.** Upgrade panel: buy and upgrade ships, cranes, docks/storage, trucks/trains, with rising costs. Bottlenecks are visible.
 4. **Cargo and prices.** Several cargo types per port, automatically fluctuating prices, and a price ticker.
 5. **Autosave.** Save and load through `localStorage`, plus a reset button.

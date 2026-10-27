@@ -5,6 +5,39 @@ const canvas = document.getElementById("game");
 const ctx = canvas.getContext("2d");
 const view = document.getElementById("view");
 const loading = document.getElementById("loading");
+const moneyEl = document.getElementById("money");
+const incomeEl = document.getElementById("income");
+
+const INCOME_WINDOW = 30; // seconds of sales averaged for the $/sec display
+
+const game = {
+  money: 0,
+  time: 0,
+  sales: [], // { time, amount } within the income window
+};
+
+function earn(amount) {
+  game.money += amount;
+  game.sales.push({ time: game.time, amount });
+}
+
+function incomePerSecond() {
+  game.sales = game.sales.filter((s) => game.time - s.time <= INCOME_WINDOW);
+  const total = game.sales.reduce((sum, s) => sum + s.amount, 0);
+  const span = Math.min(INCOME_WINDOW, Math.max(game.time, 1));
+  return total / span;
+}
+
+const formatMoney = (n) => Math.floor(n).toLocaleString("en-US");
+
+let shownMoney = null;
+let shownIncome = null;
+function updateHud() {
+  const money = formatMoney(game.money);
+  if (money !== shownMoney) { moneyEl.textContent = money; shownMoney = money; }
+  const income = `$${incomePerSecond().toFixed(1)}`;
+  if (income !== shownIncome) { incomeEl.textContent = income; shownIncome = income; }
+}
 
 // The game is drawn at a whole-number multiple of 576x324 (so every art pixel
 // is a clean square), then the canvas is shown as large as fits. When the fit
@@ -36,7 +69,7 @@ function fitCanvas() {
 
 async function start() {
   const images = await loadAssets();
-  const port = createHarbor(images);
+  const port = createHarbor(images, { onSell: earn });
 
   loading.classList.add("hidden");
   fitCanvas();
@@ -46,8 +79,10 @@ async function start() {
   function frame(now) {
     const dt = Math.min((now - last) / 1000, 0.1); // clamp after tab switches
     last = now;
+    game.time += dt;
     port.update(dt);
     port.render(ctx);
+    updateHud();
     requestAnimationFrame(frame);
   }
   requestAnimationFrame(frame);

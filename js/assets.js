@@ -16,20 +16,13 @@ const MANIFEST = {
   beam: "crane/beam.png",
   cart: "crane/cart.png",
   rope: "crane/rope.png",
-  spreader: "crane/spreader.png",
+  spreaderFrames: "crane/spreader-frames.png",
   container1: "cargo/container-1.png",
-  container2: "cargo/container-2.png",
   container5: "cargo/container-5.png",
-  container6: "cargo/container-6.png",
   container9: "cargo/container-9.png",
   container13: "cargo/container-13.png",
-  container14: "cargo/container-14.png",
   container17: "cargo/container-17.png",
-  box1: "props/box-1.png",
-  box2: "props/box-2.png",
-  box3: "props/box-3.png",
   barrier1: "props/barrier-1.png",
-  barrier2: "props/barrier-2.png",
 };
 
 function loadImage(src) {
