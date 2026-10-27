@@ -108,5 +108,5 @@ interesting choices.
 ## 10. Open items
 
 - Game name (owner: "decide later")
-- Screen layout and orientation (part of the technical decisions)
+- ~~Screen layout~~: decided as adaptive (see TECH.md)
 - Exact numbers, costs and balance (worked out during the build)
