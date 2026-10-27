@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Port Tycoon (working title)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="app">
+    <main id="view">
+      <canvas id="game" width="576" height="324" aria-label="Port view"></canvas>
+      <div id="loading">Loading port…</div>
+    </main>
+
+    <aside id="panel">
+      <header class="hud">
+        <div class="port-name" id="port-name">Harbor</div>
+        <div class="money"><span class="money-icon">$</span><span id="money">0</span></div>
+        <div class="income"><span id="income">$0</span> / sec</div>
+      </header>
+
+      <nav class="port-tabs" aria-label="Ports">
+        <button class="port-tab active" data-port="harbor">Harbor</button>
+        <button class="port-tab locked" data-port="tropical" disabled>Tropical</button>
+        <button class="port-tab locked" data-port="arctic" disabled>Arctic</button>
+      </nav>
+
+      <section class="upgrades" aria-label="Upgrades">
+        <h2>Upgrades</h2>
+        <ul id="upgrade-list">
+          <li class="upgrade coming-soon"><span class="u-name">Ships</span><span class="u-note">Coming soon</span></li>
+          <li class="upgrade coming-soon"><span class="u-name">Cranes</span><span class="u-note">Coming soon</span></li>
+          <li class="upgrade coming-soon"><span class="u-name">Docks &amp; Storage</span><span class="u-note">Coming soon</span></li>
+          <li class="upgrade coming-soon"><span class="u-name">Trucks &amp; Trains</span><span class="u-note">Coming soon</span></li>
+        </ul>
+      </section>
+    </aside>
+  </div>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

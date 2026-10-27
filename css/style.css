@@ -1,0 +1,121 @@
+:root {
+  --bg: #1b2236;
+  --panel: #26304a;
+  --panel-2: #303c5c;
+  --line: #3f4d73;
+  --text: #e8eefc;
+  --muted: #8d9bc2;
+  --accent: #f4c84a;
+  --good: #7ad68a;
+  --font: "Pixelify Sans", "Courier New", monospace;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+#app {
+  display: flex;
+  flex-direction: row;
+  height: 100dvh;
+  width: 100vw;
+}
+
+/* Port view fills the remaining space; the canvas is sized by JS to a crisp scale. */
+#view {
+  position: relative;
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0f1424;
+}
+
+#game { display: block; }
+#game.exact {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+#loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: var(--muted);
+}
+#loading.hidden { display: none; }
+
+#panel {
+  flex: 0 0 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 14px;
+  background: var(--panel);
+  border-left: 4px solid var(--line);
+  overflow-y: auto;
+}
+
+.hud {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas: "name name" "money income";
+  align-items: end;
+  gap: 4px 8px;
+  padding: 10px 12px;
+  background: var(--panel-2);
+  border: 3px solid var(--line);
+}
+.port-name { grid-area: name; font-size: 14px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+.money { grid-area: money; font-size: 30px; font-weight: 600; color: var(--accent); }
+.money-icon { margin-right: 2px; }
+.income { grid-area: income; font-size: 15px; color: var(--good); }
+
+.port-tabs { display: flex; gap: 6px; }
+.port-tab {
+  flex: 1;
+  font: inherit;
+  font-size: 15px;
+  padding: 8px 4px;
+  color: var(--text);
+  background: var(--panel-2);
+  border: 3px solid var(--line);
+  cursor: pointer;
+}
+.port-tab.active { border-color: var(--accent); color: var(--accent); }
+.port-tab.locked { color: var(--muted); cursor: not-allowed; opacity: 0.7; }
+
+.upgrades h2 { margin: 4px 0 8px; font-size: 18px; font-weight: 600; }
+#upgrade-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.upgrade {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 12px;
+  background: var(--panel-2);
+  border: 3px solid var(--line);
+  font-size: 16px;
+}
+.upgrade.coming-soon { opacity: 0.6; }
+.u-note { font-size: 13px; color: var(--muted); }
+
+/* Upright screens (phones held upright): port on top, panel below. */
+@media (max-aspect-ratio: 1/1) {
+  #app { flex-direction: column; }
+  #view { flex: 0 0 auto; padding: 6px 0; }
+  #panel { flex: 1 1 auto; border-left: none; border-top: 4px solid var(--line); }
+}
